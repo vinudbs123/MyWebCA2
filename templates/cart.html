@@ -91,5 +91,16 @@ Power Tech Gadgets - Home
   </div>
     </div>
   </main>
+<form action="/pay" method="POST">
+    <script
+      src="https://checkout.stripe.com/checkout.js"
+      class="stripe-button"
+      data-key="pk_test_51M2jAhEA7jhQIwhZZhgz7mIL4T03uZGJIHKvRmQV8aJWaRT1r30sgCwDLnEXTe3QFJ7o1zzgjaJmGncEmzpeHmFJ005VcTux22"
+      data-name="JazzYard payment"
+      data-description="Please make your payment to checkout"
+      data-amount="0000"
+      data-currency="eur">
+    </script>
+  </form>
 
 {% endblock %}
