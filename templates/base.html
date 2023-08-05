@@ -53,8 +53,16 @@
                         <td><img src="/static/img/{{ shoppingCart[i]["image"] }}" width="30px"  /></td>
                         
                         <td>{{ shoppingCart[i]['SUM(qty)'] }}</td>
-                        <td>{{ '${:,.2f}'.format(shoppingCart[i]["price"]) }}</td>
-                        <td>{{ '${:,.2f}'.format(shoppingCart[i]['SUM(subTotal)']) }}</td><!--
+                        <td>{% if shoppingCart[i]["price"] is not none %}
+                          {{ '${:,.2f}'.format(shoppingCart[i]["price"]) }}
+                        {% else %}
+                          N/A
+                        {% endif %}</td>
+                        <td> {% if shoppingCart[i]['SUM(subTotal)'] is not none %}
+                          {{ '${:,.2f}'.format(shoppingCart[i]['SUM(subTotal)']) }}
+                        {% else %}
+                          N/A
+                        {% endif %}</td><!--
                         <td>
                           <form action="/remove/" methods="GET">
                             <input type="hidden" name="id" value="{{ shoppingCart[i]["id"] }}" />

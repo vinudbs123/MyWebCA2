@@ -25,9 +25,17 @@ def index():
     if 'user' in session:
         shoppingCart = db.execute("SELECT image, SUM(qty), SUM(subTotal), price, id FROM cart")
         shopLen = len(shoppingCart)
+        total = 0  # Initialize total to 0
+        totItems = 0  # Initialize totItems to 0
         for i in range(shopLen):
-            total += shoppingCart[i]["SUM(subTotal)"]
-            totItems += shoppingCart[i]["SUM(qty)"]
+            subTotal = shoppingCart[i]["SUM(subTotal)"]
+            qty = shoppingCart[i]["SUM(qty)"]
+        
+            # Check if the values are not None before adding to total and totItems
+            if subTotal is not None:
+                total += subTotal
+            if qty is not None:
+                totItems += qty
         products = db.execute("SELECT * FROM products")
         productsLen = len(products)
         return render_template ("index.html", shoppingCart=shoppingCart, products=products, shopLen=shopLen, productsLen=productsLen, total=total, totItems=totItems, display=display, session=session )
